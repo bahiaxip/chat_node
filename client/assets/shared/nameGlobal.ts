@@ -1,0 +1,1 @@
+export var NAMEGLOBAL="HOLA";

@@ -1,0 +1,157 @@
+  /*******************cabecera ***************/
+#header{
+
+}
+
+#header span{
+  font-size:15px;
+}
+#header h2{
+  display:block;
+  width:100%;
+  text-align:center;
+  margin:auto;
+  color:orange;
+  font-family: Arial;
+}
+  /*******************fin cabecera ***************/
+.contenedor{
+  overflow:auto;
+  margin:auto;
+}
+
+
+.chat_link{
+  /*float:right;*/
+}
+      /* botón navegador */
+          .boton_chat{
+            float:right;
+            height:50px;
+            background:#708090 !important ;
+            /*position:fixed;
+            right:0;*/
+          }
+
+          .boton_chat:hover{
+            background:purple !important;
+          }
+          .boton_chat:active{
+            background:grey !important;
+          }
+      /* fin botón navegador */
+
+      /* ventana de chat */
+#panel_chat{
+
+}
+.panel_chat{
+  width:35%;
+  position:fixed;
+  float:right;
+  height:480px;
+  background:rgba(0,0,0,.8);
+  border:yellow 1px solid;
+  right:0;
+}
+.panel_chat input,textarea{
+  color:yellow !important;
+  resize:none !important;
+}
+  /* mensajes enviados de chat */
+.msg {
+  height:280px;
+  overflow:auto;
+}
+
+.panel_chat .mensaje{
+  display: block;
+  width:85% ;
+  background:rgba(0,0,0,.6);
+  font-weight: bold;
+  /*background-color:#D3D3D3;*/
+  /*background-image:url("../ima/fruit_kiwi.jpg");
+  background-position:center center; background-size:500px 500px;*/
+  height:auto;
+  box-shadow:2px 2px 10px #FFF;
+  margin:10px auto;
+  border-radius:10px;
+}
+/* mensajes del cliente del mismo navegador*/
+.mensaje_interno{
+  transform:translateX(-20px);
+  border-left-color:orange;
+  border-left-size:5px;
+}
+/* mensajes del cliente otro navegador o otro dispositivo*/
+.mensaje_externo{
+  transform:translateX(20px);
+}
+    /*  texto mensaje */
+.panel_chat .mensaje>p {
+  padding:5px 20px 5px 20px;
+  margin:5px auto;
+  text-align:justify;
+  color:yellow;
+  line-height: 25px;
+  font-size:17px;
+  height:auto;
+  overflow:auto;
+}
+/*  nombre mensaje */
+.panel_chat .mensaje>span{
+  padding:10px 20px 0px 20px;
+  color:orange;
+  line-height: 25px;
+  font-size:14px;
+}
+/*  imagen mensaje */
+.panel_chat .mensaje>button{
+  float:right;
+}
+
+.caja{
+  margin:10px;
+}
+
+/*               modificando los matInput de Angular Material     */
+/*.mat-form-field textarea{background-color:transparent !important;}
+.mat-form-field textarea:focus{background-color:white !important;}*/
+.panel_chat .mat-form-field-label{
+  color:white !important;
+}
+.panel_chat .mat-form-field-underline{
+  background:orange !important;
+  /*border:orange 1px solid !important;*/
+}
+.panel_chat .mat-form-field-ripple{
+  background-color:yellow !important;
+}
+/*        FIN modificando los matInput de Angular Material     */
+/* ventana de title de Angular Material (tooltip) */
+.tooltip_profile{
+  /*background:rgba(0,0,0,0.8);*/
+  background:rgba(255,20,147,.8);
+  font-size:12px;
+}
+  /*********************** ventana de chat ***********************/
+
+
+.floatR{
+  float:right !important;
+}
+.floatL{
+  float:left !important;
+}
+
+@media only screen and (max-width: 768px){
+  .panel_chat{
+    width:100%;
+  }
+}
+
+@media (max-width:768px) and (orientation: landscape){
+  .panel_chat{
+    display:none;
+  }
+}
