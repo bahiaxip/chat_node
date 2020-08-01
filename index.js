@@ -3,11 +3,24 @@ var express = require("express");
 var fs = require("fs");
 const path= require("path");
 const fileUpload = require("express-fileupload");
+//Certificado SSL
+var path_letsencrypt=path.resolve("/etc/letsencrypt/live/bahiaxip.com");
+let options = {
+	key:fs.readFileSync(path_letsencrypt+"/privkey.pem"),
+	cert:fs.readFileSync(path_letsencrypt+"/cert.pem")
+};
 
 var app = express();
-var server = require("http").Server(app);
-//socket.io
-var io = require("socket.io")(server);
+
+//server protocolo http
+//var server = require("http").Server(app);
+//var io = require("socket.io")(server);
+
+//server protocolo https
+var serverhttps = require("https").Server(options,app);
+var io = require("socket.io")(serverhttps);
+
+
 app.use(express.static("client",{redirect:false}))
 app.use(fileUpload());
 app.use((req,res,next) => {
@@ -25,6 +38,7 @@ app.post("/uploads",(req,res) =>{
 
 		//archivo.mv("./server/uploads/"+archivo.name,err =>{
 		archivo.mv("./uploads/"+archivo.name,err =>{
+		
 			if(err)	return res.status(500).send({message: err});			
 		})
 		res.status(200).send({name: archivo.name});		
@@ -58,15 +72,22 @@ var messages= {
 	image:""
 };
 
-io.on("connection",function(socket)  {	
+io.on("connection",function(socket)  {
 	socket.emit("messages",messages);
-
 	socket.on("add-message",function(data){	
 		let message=data;
 		io.sockets.emit("messages",data);
 	});
 });
 
-server.listen(6677, function(){
+//escuchando server (http) anulado
+/*server.listen(6677, function(){
 	console.log("Servidor está funcionando en http://localhost:6677");
+});*/
+
+//escuchando serverhttps (https)
+
+serverhttps.listen(6677, function(){
+	console.log("Servidor está funcionando en chat-node.bahiaxip.com:6677");
 });
+
